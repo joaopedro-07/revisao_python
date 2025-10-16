@@ -1,6 +1,6 @@
 # João Pedro da Cunha Machado
 
-import tkinter as tk
+import tkinter as tk 
 from tkinter import ttk, messagebox, filedialog
 import pandas as pd
 import os
@@ -75,6 +75,15 @@ class SistemaAlunos:
             nota = float(nota)
         except ValueError:
             messagebox.showerror("Erro", "Idade deve ser número inteiro e nota deve ser número!")
+            return
+
+        # ✅ Validações de faixa
+        if idade < 13 or idade > 50:
+            messagebox.showerror("Erro", "A idade deve estar entre 13 e 50 anos!")
+            return
+
+        if nota < 0 or nota > 100:
+            messagebox.showerror("Erro", "A nota deve estar entre 0 e 100!")
             return
 
         novo = pd.DataFrame([[nome, idade, curso, nota]], columns=self.df.columns)
